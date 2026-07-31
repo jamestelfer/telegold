@@ -1,6 +1,6 @@
 module github.com/jamestelfer/telegold
 
-go 1.25.0
+go 1.26
 
 tool golang.org/x/vuln/cmd/govulncheck
 
