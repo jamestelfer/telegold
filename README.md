@@ -1,5 +1,9 @@
 # Telegold - a Goldmark renderer for Telegram
 
+> **Fork note:** this fork of [leonid-shevtsov/telegold](https://github.com/leonid-shevtsov/telegold)
+> adds safe chunked rendering — splitting long Telegram messages at block
+> boundaries while keeping HTML tags balanced in every chunk.
+
 If you want to publish regular Markdown into Telegram.
 
 ## The problem
