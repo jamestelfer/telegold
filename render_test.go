@@ -1085,7 +1085,7 @@ func TestRender_WrappedProseNeverFusesWords(t *testing.T) {
 	got := Join(blocks)
 
 	// Every word in the source must appear as a whole word in the output.
-	for _, word := range strings.Fields(src) {
+	for word := range strings.FieldsSeq(src) {
 		if !containsWord(got, word) {
 			t.Errorf("word %q is not present as a whole word in %q", word, got)
 		}
@@ -1099,7 +1099,7 @@ func TestRender_WrappedProseNeverFusesWords(t *testing.T) {
 // containsWord reports whether s contains word delimited by whitespace or the
 // string boundary, which is what catches a fused pair like "dogA".
 func containsWord(s, word string) bool {
-	for _, field := range strings.Fields(s) {
+	for field := range strings.FieldsSeq(s) {
 		if strings.Trim(field, ".,;:") == strings.Trim(word, ".,;:") {
 			return true
 		}

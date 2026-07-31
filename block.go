@@ -165,10 +165,7 @@ func (b *blockBuilder) block() Block { return Block{tokens: b.tokens} }
 // break is part of the heading — and writing the full separator on top of it
 // would open a second blank line. sep is always a run of newlines.
 func (b *blockBuilder) writeSeparator(sep string) {
-	trailing := b.trailingNewlines()
-	if trailing > len(sep) {
-		trailing = len(sep)
-	}
+	trailing := min(b.trailingNewlines(), len(sep))
 	b.WriteString(sep[trailing:])
 }
 
@@ -256,10 +253,7 @@ func minCut(s string) int {
 // Text tokens hold escaped text, so a cut at an arbitrary byte can land inside
 // "&amp;" and emit a fragment Telegram would either show literally or reject.
 func entityStart(s string, cut int) int {
-	lo := cut - maxEntityLen
-	if lo < 0 {
-		lo = 0
-	}
+	lo := max(cut-maxEntityLen, 0)
 	for i := cut - 1; i >= lo; i-- {
 		switch s[i] {
 		case '&':

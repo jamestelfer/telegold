@@ -250,10 +250,7 @@ func (c *chunker) writeTag(t token) {
 // separator returns the part of sep the active chunk does not already end with,
 // matching how blocks are joined when they are not chunked.
 func (c *chunker) separator(sep string) string {
-	trailing := len(c.tail)
-	if trailing > len(sep) {
-		trailing = len(sep)
-	}
+	trailing := min(len(c.tail), len(sep))
 	return sep[trailing:]
 }
 
