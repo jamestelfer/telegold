@@ -179,8 +179,11 @@ func resolveReferences(text []byte) []byte {
 
 // collectText appends the text of every leaf under node, in source order.
 //
-// Only the three text-bearing leaves contribute; every other node is walked
-// through for its children. All three are leaves in goldmark's AST — an
+// Only the three text-bearing leaves contribute; every other node — including
+// *ast.RawHTML — is walked through for its children. Raw HTML tags are silently
+// dropped while text between them is kept (e.g. "<b>bold</b>" becomes "bold"),
+// because tables render as preformatted text where tags would break column
+// alignment. All three are leaves in goldmark's AST — an
 // AutoLink keeps its text in a field rather than a child — so SkipChildren is
 // a statement of intent rather than a behavioural necessity: whatever these
 // nodes hold, their own accessor is the whole of their text.
