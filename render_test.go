@@ -35,7 +35,7 @@ func TestRender_UnderscoreBearingURLsSurviveByteForByte(t *testing.T) {
 		t.Errorf("Render() = %q, want byte-identical input %q", got, bugReportSource)
 	}
 	for _, url := range []string{"https://example.com/a_b", "https://example.com/c_d"} {
-		if !contains(got, url) {
+		if !strings.Contains(got, url) {
 			t.Errorf("output is missing %q: %q", url, got)
 		}
 	}
@@ -108,7 +108,7 @@ func TestRender_PreservesLiteralMarkdownPunctuation(t *testing.T) {
 			if got != tc.want {
 				t.Errorf("Render(%q) = %q, want %q", tc.src, got, tc.want)
 			}
-			if indexOf(got, `\`) >= 0 {
+			if strings.Contains(got, `\`) {
 				t.Errorf("Render(%q) = %q — output must contain no backslash escape", tc.src, got)
 			}
 		})
@@ -272,10 +272,10 @@ func TestRender_LinkWithRejectedSchemeDropsTheAnchor(t *testing.T) {
 			if got != "click" {
 				t.Errorf("Render(%q) = %q, want the bare label %q", tc.src, got, "click")
 			}
-			if indexOf(got, "<a") >= 0 {
+			if strings.Contains(got, "<a") {
 				t.Errorf("Render(%q) = %q — must emit no anchor element", tc.src, got)
 			}
-			if indexOf(got, tc.dest) >= 0 {
+			if strings.Contains(got, tc.dest) {
 				t.Errorf("Render(%q) = %q — destination %q must not reach the output", tc.src, got, tc.dest)
 			}
 		})
@@ -1303,21 +1303,6 @@ func TestRender_TypographyDocument(t *testing.T) {
 			t.Errorf("block %d is empty", i)
 		}
 	}
-}
-
-// contains is strings.Contains, spelled out to keep the failure messages above
-// readable without an import that later cases do not need.
-func contains(haystack, needle string) bool {
-	return len(haystack) >= len(needle) && indexOf(haystack, needle) >= 0
-}
-
-func indexOf(haystack, needle string) int {
-	for i := 0; i+len(needle) <= len(haystack); i++ {
-		if haystack[i:i+len(needle)] == needle {
-			return i
-		}
-	}
-	return -1
 }
 
 // TestRender_TableCellKeepsALinkLabelAndDropsItsDestination records a limit of
