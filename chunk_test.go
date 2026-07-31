@@ -7,7 +7,7 @@ import (
 	"testing"
 	"unicode/utf8"
 
-	"github.com/jamestelfer/telegold/tghtmltest"
+	"github.com/jamestelfer/telegold/tgtest"
 )
 
 // textBlock builds a Block of plain content, for chunker cases where what is in
@@ -605,7 +605,7 @@ func TestChunk_RowWiderThanTheLimitWrapsAndLosesItsAlignment(t *testing.T) {
 	for _, c := range chunks {
 		reassembled.WriteString(preContent(t, c))
 	}
-	tghtmltest.AssertSameText(t, original, reassembled.String())
+	tgtest.AssertSameText(t, original, reassembled.String())
 }
 
 // TestChunk_BlockOfOnlyWhitespaceStaysWithinTheLimit guards the whitespace

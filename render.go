@@ -2,7 +2,7 @@
 // https://github.com/leonid-shevtsov/telegold (commit 36dc899, MIT licence).
 // See the LICENSE file in this directory for the upstream copyright notice.
 
-// Package tghtml renders CommonMark to the HTML subset accepted by Telegram's
+// Package telegold renders CommonMark to the HTML subset accepted by Telegram's
 // HTML parse mode, as an ordered sequence of independently tag-balanced blocks.
 //
 // The node-handling structure and the choice of Telegram tag for each markdown

@@ -17,7 +17,7 @@ type UnsupportedError struct {
 }
 
 func (e *UnsupportedError) Error() string {
-	return "tghtml: " + e.Construct + " is not supported by Telegram's HTML subset"
+	return "telegold: " + e.Construct + " is not supported by Telegram's HTML subset"
 }
 
 // ErrRawHTML is returned when the source contains raw HTML, block or inline.

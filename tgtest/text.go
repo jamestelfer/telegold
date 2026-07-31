@@ -1,4 +1,4 @@
-package tghtmltest
+package tgtest
 
 import "testing"
 

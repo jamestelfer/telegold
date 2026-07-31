@@ -1,11 +1,11 @@
-// Package tghtmltest holds assertions about tghtml's output that more than one
+// Package tgtest holds assertions about telegold's output that more than one
 // package's tests need.
 //
-// Tag balance is checked at two layers: tghtml's own tests assert it on every
+// Tag balance is checked at two layers: telegold's own tests assert it on every
 // block and every chunk, and the adapter's tests assert it on the bytes actually
 // handed to Telegram. One implementation, so the two cannot drift into
 // disagreeing about what balanced means.
-package tghtmltest
+package tgtest
 
 import (
 	"strings"

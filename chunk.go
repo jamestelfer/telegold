@@ -28,7 +28,7 @@ import (
 // occasional extra chunk and needs no second parser.
 func Chunk(blocks []Block, limit int) ([]string, error) {
 	if limit <= 0 {
-		return nil, fmt.Errorf("tghtml: chunk limit must be positive, got %d", limit)
+		return nil, fmt.Errorf("telegold: chunk limit must be positive, got %d", limit)
 	}
 
 	c := chunker{limit: limit}
@@ -57,7 +57,7 @@ func Chunk(blocks []Block, limit int) ([]string, error) {
 // would be split at a third of the length that actually fits.
 func ChunkPlain(text string, limit int) ([]string, error) {
 	if limit <= 0 {
-		return nil, fmt.Errorf("tghtml: chunk limit must be positive, got %d", limit)
+		return nil, fmt.Errorf("telegold: chunk limit must be positive, got %d", limit)
 	}
 	var out []string
 	for text != "" {
