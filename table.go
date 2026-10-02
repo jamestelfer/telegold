@@ -10,9 +10,9 @@ import (
 	"text/tabwriter"
 	"unicode/utf8"
 
-	"github.com/yuin/goldmark/ast"
-	east "github.com/yuin/goldmark/extension/ast"
-	"github.com/yuin/goldmark/util"
+	"github.com/yuin/goldmark/v2/ast"
+	east "github.com/yuin/goldmark/v2/extension/ast"
+	"github.com/yuin/goldmark/v2/util"
 )
 
 // Column layout for a degraded table. Telegram's HTML subset has no table
